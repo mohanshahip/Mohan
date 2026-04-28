@@ -1,0 +1,148 @@
+/* ActivityItem.css - Professional Activity List Styles */
+
+.activity-item-new {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  transition: var(--admin-transition);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.activity-item-new:hover {
+  transform: translateX(4px);
+  border-color: var(--icon-color, var(--primary-color));
+  background: var(--background-alt);
+  box-shadow: var(--shadow-sm);
+}
+
+.activity-item-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-item-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--icon-color, var(--primary-color)) 12%, transparent);
+  color: var(--icon-color, var(--primary-color));
+  flex-shrink: 0;
+  transition: var(--admin-transition);
+  box-shadow: var(--shadow-xs);
+}
+
+.activity-item-new:hover .activity-item-icon {
+  background: var(--icon-color, var(--primary-color));
+  color: var(--white);
+  transform: scale(1.05) rotate(-5deg);
+  box-shadow: var(--shadow-md);
+}
+
+.activity-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-bottom: var(--space-1);
+}
+
+.activity-item-content {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: var(--tracking-tight);
+}
+
+.activity-status-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.activity-status-new {
+  background: var(--success-light);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 20%, transparent);
+}
+
+.activity-status-updated {
+  background: var(--primary-50);
+  color: var(--primary-600);
+  border-color: color-mix(in srgb, var(--primary-600) 20%, transparent);
+}
+
+.activity-status-deleted {
+  background: var(--error-light);
+  color: var(--error);
+  border-color: color-mix(in srgb, var(--error) 20%, transparent);
+}
+
+.activity-item-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.activity-item-user,
+.activity-item-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.activity-item-link {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: var(--admin-transition);
+  background: var(--background-alt);
+  border: 1px solid var(--border-color);
+}
+
+.activity-item-link:hover {
+  background: var(--primary-gradient);
+  color: var(--white);
+  border-color: transparent;
+  transform: rotate(-15deg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Activity Item Types */
+.activity-item-poem { --icon-color: #ef4444; }
+.activity-item-project { --icon-color: #3b82f6; }
+.activity-item-gallery { --icon-color: #10b981; }
+.activity-item-skill { --icon-color: #f59e0b; }
+.activity-item-system { --icon-color: #6366f1; }

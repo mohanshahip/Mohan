@@ -1,0 +1,341 @@
+/* Poem Card Styles REMOVED Grid and Generic Wrappers - Using admin-cards-grid from AdminCommon.css */
+
+/* PoemCard Proper Design */
+.admin-poem-card-proper {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  transition: all var(--transition-standard);
+}
+
+[data-theme='dark'] .admin-poem-card-proper {
+  background: var(--background-alt);
+}
+
+.admin-poem-card-proper:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-300);
+}
+
+.admin-poem-card-proper.selected {
+  border-color: var(--primary-color);
+  background: var(--primary-50);
+}
+
+[data-theme='dark'] .admin-poem-card-proper.selected {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.poem-card-accent-bar {
+  display: none;
+}
+
+.poem-card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+  background: var(--background-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poem-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.admin-poem-card-proper:hover .poem-card-image {
+  transform: scale(1.05);
+}
+
+.poem-card-selection-overlay {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2;
+}
+
+.poem-card-actions-overlay {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all var(--transition-standard);
+  z-index: 2;
+}
+
+.admin-poem-card-proper:hover .poem-card-actions-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poem-card-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition-standard);
+  color: var(--text-secondary);
+}
+
+[data-theme='dark'] .poem-card-icon-btn {
+  background: var(--background-elevated);
+  color: var(--text-primary);
+}
+
+.poem-card-icon-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.poem-card-content {
+  padding: var(--spacing-lg);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.poem-card-title {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.poem-card-excerpt {
+  margin: var(--space-2) 0;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.poem-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-light);
+}
+
+.poem-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.poem-card-actions-bottom {
+  display: flex;
+  border-top: 1px solid var(--border-light);
+  background: var(--background-alt);
+  padding: 0; /* Override padding from old style */
+}
+
+.poem-card-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0.75rem;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-standard);
+  color: var(--text-secondary);
+  border-radius: 0; /* Override radius */
+}
+
+.poem-card-action-btn:not(:last-child) {
+  border-right: 1px solid var(--border-light);
+}
+
+.poem-card-action-btn:hover {
+  background: var(--white);
+  color: var(--text-primary);
+}
+
+[data-theme='dark'] .poem-card-action-btn:hover {
+  background: var(--background-elevated);
+}
+
+.poem-card-action-btn.delete:hover {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* Smartphone: ≤ 576px */
+@media (max-width: 576px) {
+  .poem-card-actions-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    top: var(--space-2);
+    right: var(--space-2);
+    flex-direction: row;
+    gap: var(--space-1);
+  }
+  
+  .poem-card-icon-btn {
+    width: 36px; /* Larger tap targets */
+    height: 36px;
+  }
+  
+  .poem-card-content {
+    padding: var(--spacing-md);
+  }
+  
+  .poem-card-action-btn {
+    padding: 0.875rem; /* Larger tap targets */
+  }
+}
+
+.poem-card-no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.5;
+}
+
+.poem-card-featured-icon {
+  color: #f59e0b; /* Warning color for featured */
+}
+
+.poem-card-actions-top {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.poem-card-icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poem-card-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+
+.poem-card-icon-btn.published {
+  color: var(--success-color);
+}
+
+.poem-card-icon-btn.draft {
+  color: var(--warning-color);
+}
+
+.poem-card-icon-btn.featured {
+  color: #f59e0b;
+}
+
+.poem-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.poem-card-actions-bottom {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background-alt);
+}
+
+:where(.dark, .dark-mode, [data-theme='dark']) .poem-card-actions-bottom {
+  border-color: var(--border-color);
+  background: var(--surface);
+}
+
+.poem-card-action-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.poem-card-action-btn.view {
+  color: var(--primary-color);
+}
+
+.poem-card-action-btn.view:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.poem-card-actions-group {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.poem-card-action-btn.edit {
+  color: var(--text-muted);
+}
+
+.poem-card-action-btn.edit:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+
+.poem-card-action-btn.delete {
+  color: #ef4444;
+}
+
+.poem-card-action-btn.delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+}

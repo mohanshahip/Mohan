@@ -1,0 +1,171 @@
+/* AdminLayout.css - Grid-based Layout for Admin Panel */
+
+.admin-layout {
+  display: grid;
+  grid-template-areas: "sidebar content";
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr); /* CRITICAL: Fixed sidebar column, flexible content */
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--background);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.admin-layout.sidebar-collapsed {
+  grid-template-columns: var(--sidebar-collapsed-width) minmax(0, 1fr);
+}
+
+.admin-content-layout {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* CRITICAL: Prevents content from expanding the grid */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--background);
+  position: relative;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Page Transition Wrapper */
+.page-transition-wrapper {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page Transitions */
+.page-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.page-fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.page-fade-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+/* Mobile & Tablet: ≤ 992px */
+@media (max-width: 992px) {
+  .admin-layout {
+    grid-template-areas: "content";
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-content-layout {
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+/* Smartphone: ≤ 576px */
+@media (max-width: 576px) {
+  .admin-content-layout {
+    height: 100dvh; /* Use dynamic viewport height for better mobile support */
+  }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-layout-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-standard), visibility var(--transition-standard);
+}
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Language Switch Overlay */
+.admin-language-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--surface-alpha-90);
+  backdrop-filter: blur(8px);
+  z-index: var(--z-max);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-standard);
+}
+
+.admin-language-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.language-switch-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--primary-100);
+  border-top-color: var(--primary-600);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

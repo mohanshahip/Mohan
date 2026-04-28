@@ -1,0 +1,66 @@
+/* Poems.css - Dedicated styles for the public Poems page */
+
+.poem-subtitle-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+.poem-subtitle-author,
+.poem-subtitle-date {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+.poem-detail-page {
+  animation: fadeIn 0.5s ease-out;
+  margin-top: var(--space-12);
+}
+
+.empty-poems-state {
+  grid-column: 1 / -1;
+  padding: var(--space-20) 0;
+  text-align: center;
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-3xl);
+  border: 2px dashed var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-poems-icon {
+  margin: 0 auto var(--space-4);
+  color: var(--text-muted);
+  opacity: 0.2;
+}
+
+.poem-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.poem-loading-text {
+  margin-left: var(--space-4);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+
+.sort-select:hover {
+  border-color: var(--primary-color);
+}
+
+.sort-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}

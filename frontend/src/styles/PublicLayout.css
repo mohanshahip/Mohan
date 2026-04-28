@@ -1,0 +1,28 @@
+/* PublicLayout.css - Minimal styling for public layout */
+.public-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.public-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--navbar-height);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure content takes full width */
+.public-content > * {
+  flex: 1;
+  width: 100%;
+}
+
+/* Smooth transitions for theme changes */
+.public-layout {
+  transition: background-color var(--transition-base);
+}

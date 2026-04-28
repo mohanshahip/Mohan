@@ -1,0 +1,281 @@
+d:\backup\mohanfinal\frontend\src\components\common\Breadcrumbs.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Breadcrumbs.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\ConfirmationModal.jsx: ;
+      case 'warning':
+        return
+d:\backup\mohanfinal\frontend\src\components\common\ConfirmationModal.jsx: ;
+      case 'info':
+      default:
+        return
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\ContentCard.jsx: 3 &&
+d:\backup\mohanfinal\frontend\src\components\common\CustomSelect.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: 0 && selected.length
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: 0 &&
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: «
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: ‹
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: ›
+d:\backup\mohanfinal\frontend\src\components\common\DataTable.jsx: »
+d:\backup\mohanfinal\frontend\src\components\common\Footer.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Footer.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Footer.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Hero.jsx: setIsMobile(window.innerWidth
+d:\backup\mohanfinal\frontend\src\components\common\Hero.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\Navbar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Navbar.jsx: :
+d:\backup\mohanfinal\frontend\src\components\common\Navbar.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\Navbar.jsx: :
+d:\backup\mohanfinal\frontend\src\components\common\NotFound.jsx: 404
+d:\backup\mohanfinal\frontend\src\components\common\SearchAndFilter.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\common\Sidebar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Sidebar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Sidebar.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\Sidebar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: (
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: :
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: 👤
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: ⚙️
+d:\backup\mohanfinal\frontend\src\components\common\Topbar.jsx: 🚪
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryCard.jsx: img.isPrimary)?.url || gallery.images?.[0]?.url;
+  const photoCount = gallery.images?.length || 0;
+
+  return (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryCard.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryCard.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryCard.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryViewer.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryViewer.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryViewer.jsx: (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryViewer.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\gallery\GalleryViewer.jsx: (
+d:\backup\mohanfinal\frontend\src\components\poems\PoemDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\poems\PoemDetail.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\poems\PoemDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\poems\PoemDetail.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\poems\PoemDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\projects\ProjectDetail.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\components\projects\ProjectDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\projects\ProjectDetail.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\projects\ProjectDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\projects\ProjectDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\components\skills\SkillCard.jsx: :
+d:\backup\mohanfinal\frontend\src\components\skills\SkillCard.jsx: (
+d:\backup\mohanfinal\frontend\src\components\skills\SkillDetail.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\components\skills\SkillDetail.jsx: (
+d:\backup\mohanfinal\frontend\src\context\ToastContext.jsx: (
+d:\backup\mohanfinal\frontend\src\context\ToastContext.jsx: ×
+d:\backup\mohanfinal\frontend\src\context\UIContext.jsx: 0 && !confirmState.open && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ContactAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\DeletePoem.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditPoem.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditPoem.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditPoem.jsx: ' + t('common.error') + '
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditPoem.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditPoem.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\EditProject.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: *
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: *
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: ) : galleriesError ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: ) : galleries.length === 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\GalleryAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: ) : filteredHeroes.length === 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\HeroAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: = 10 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: ' + t('common.error') + '
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemAdd.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemDashboard.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: ) : poems.length === 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: ) : viewMode === "table" ? (
+        // Table View
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: ) : (
+        // Grid View
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemList.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\PoemStats.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectAdd.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectDashboard.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: ) : projects.length === 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: ) : viewMode === "table" ? (
+        // Table View
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: ) : (
+        // Grid View
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectList.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\ProjectStats.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Content\SkillAdmin.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\ContentPerformanceChart.jsx: 0) return '#10b981';
+    if (growth
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\ContentPerformanceChart.jsx: = 0 ?
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\ContentPerformanceChart.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\ContentPerformanceChart.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\ContentPerformanceChart.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\DashboardContent.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\PieChartComponent.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\PieChartComponent.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\PieChartComponent.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\PieChartComponent.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\VisitsChart.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\VisitsChart.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\VisitsChart.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\VisitsChart.jsx: = 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Dashboard\VisitsChart.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminFilters.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminFilters.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminFilters.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminFilters.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminFilters.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminStats.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminTable.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminTable.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\AdminTable.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\CreateAdminForm.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\CreateAdminForm.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\ManageAdmin.jsx: 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\ManageAdmin.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\ManageAdmin.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\ManageAdmin.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\ManageAdmin\ManageAdmin.jsx: 1 && (
+d:\backup\mohanfinal\frontend\src\pages\Admin\Profile\ProfilePage.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\Admin\settings\SettingPage.jsx: ;
+  if (error) return (
+d:\backup\mohanfinal\frontend\src\pages\Admin\settings\SettingPage.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\settings\SettingPage.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\settings\SettingPage.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\Admin\settings\SettingPage.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: 0 ? (
+d:\backup\mohanfinal\frontend\src\pages\auth\ForgotPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\Login.jsx: !
+d:\backup\mohanfinal\frontend\src\pages\auth\Login.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\auth\Login.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\ResetPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\ResetPassword.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\auth\ResetPassword.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\Signup.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\auth\Signup.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: m.value);
+
+  return (
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: :
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: 0 && (
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: ?
+d:\backup\mohanfinal\frontend\src\pages\public\Contact.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Gallery.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Gallery.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Poems.jsx: [...prev, ...processedPoems]);
+        
+        setHasMore(pageNum
+d:\backup\mohanfinal\frontend\src\pages\public\Poems.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\public\Poems.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Poems.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Poems.jsx: ))
+        ) : (
+d:\backup\mohanfinal\frontend\src\pages\public\Projects.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\public\Projects.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Projects.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Projects.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'backend':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'database':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'devops':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'mobile':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'design':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'testing':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'tools':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'soft-skills':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ,
+    'other':
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: ) : (
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: (
+d:\backup\mohanfinal\frontend\src\pages\public\Skills.jsx: (

@@ -1,0 +1,95 @@
+/* GalleryBulkActions.css */
+.admin-bulk-actions {
+  background: var(--primary-gradient-subtle);
+  border: 1px solid var(--primary-light);
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  animation: slideDown 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+:where(.dark, .dark-mode, [data-theme='dark']) .admin-bulk-actions {
+  background: rgba(129, 140, 248, 0.1);
+  border-color: var(--primary-dark);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-bulk-actions::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary-gradient);
+}
+
+.admin-bulk-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--surface);
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+:where(.dark, .dark-mode, [data-theme='dark']) .admin-bulk-info {
+  background: var(--surface-dark);
+  color: var(--primary-light);
+}
+
+.admin-bulk-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.admin-bulk-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  min-width: 200px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+:where(.dark, .dark-mode, [data-theme='dark']) .admin-bulk-select {
+  background: var(--surface-dark);
+  border-color: var(--border-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.admin-bulk-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}

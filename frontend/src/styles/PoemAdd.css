@@ -1,0 +1,800 @@
+/* styles/PoemAdd.css - Enhanced Professional Version */
+.poem-add-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  animation: slideUpFade var(--transition-slow) cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Header Section */
+.poem-add-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.poem-add-header::after {
+  display: none;
+}
+
+.poem-add-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0.5rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-standard);
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+}
+
+[data-theme="dark"] .poem-add-back-btn {
+  background: var(--background-elevated);
+}
+
+.poem-add-back-btn:hover {
+  background: var(--background-alt);
+  color: var(--primary-600);
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.poem-add-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: var(--tracking-tight);
+}
+
+.poem-add-title::after {
+  display: none;
+}
+
+/* Messages */
+.poem-add-message {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  border: 1px solid transparent;
+}
+
+.poem-add-message.success {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #10b98133;
+}
+
+[data-theme="dark"] .poem-add-message.success {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.poem-add-message.error {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #ef444433;
+}
+
+[data-theme="dark"] .poem-add-message.error {
+  background: #7f1d1d;
+  color: #f87171;
+}
+
+/* Form Container */
+.poem-add-form {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.poem-add-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--spacing-xl);
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .poem-add-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.poem-add-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.poem-add-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .poem-add-card {
+  background: var(--background-alt);
+}
+
+/* Form Groups */
+.poem-add-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.poem-add-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  border: none;
+}
+
+.poem-add-label::before {
+  display: none;
+}
+
+.poem-add-error {
+  font-size: 11px;
+  color: var(--error);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Input Fields */
+.poem-add-input,
+.poem-add-textarea,
+.poem-add-select {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-standard);
+  box-shadow: var(--shadow-xs);
+}
+
+[data-theme="dark"] .poem-add-input,
+[data-theme="dark"] .poem-add-textarea,
+[data-theme="dark"] .poem-add-select {
+  background-color: var(--background-alt);
+}
+
+.poem-add-input:focus,
+.poem-add-textarea:focus,
+.poem-add-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+.poem-add-textarea {
+  min-height: 200px;
+  font-family: inherit;
+}
+
+.poem-add-char-count {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 2px;
+}
+  text-align: right;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  background: var(--background-alt);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  align-self: flex-end;
+  border: 1px solid var(--border-light);
+}
+
+/* Tags Input */
+.poem-add-tags-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.poem-add-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  min-height: 52px;
+  padding: 0.75rem;
+  background: var(--background-alt);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition: border-color var(--transition-base);
+}
+
+.poem-add-tags-list:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.poem-add-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--primary-gradient);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  animation: tagAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.poem-add-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.poem-add-tag:hover::before {
+  left: 100%;
+}
+
+@keyframes tagAppear {
+  from { 
+    opacity: 0; 
+    transform: scale(0.9) translateY(5px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+.poem-add-tag-remove {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  transition: all var(--transition-fast);
+  font-size: 0.75rem;
+}
+
+.poem-add-tag-remove:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.poem-add-tag-remove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.poem-add-tag-input {
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  transition: all var(--transition-base);
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.poem-add-tag-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.poem-add-tags-limit {
+  font-size: var(--font-size-xs);
+  color: var(--error);
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  background: rgba(239, 68, 68, 0.05);
+  border-radius: var(--radius-sm);
+  margin-top: 0.25rem;
+  border: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+/* File Upload */
+.poem-add-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.poem-add-file-input {
+  display: none;
+}
+
+.poem-add-upload-area {
+  position: relative;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  background: var(--background-alt);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  overflow: hidden;
+  text-align: center;
+}
+
+.poem-add-upload-area:hover {
+  border-color: var(--primary-color);
+  background: var(--surface);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.poem-add-upload-area.error {
+  border-color: var(--error);
+  background: rgba(239, 68, 68, 0.05);
+  animation: shake 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-width: 2px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.poem-add-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-tertiary);
+}
+
+.poem-add-upload-text {
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.poem-add-upload-subtext {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 300px;
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.poem-add-image-preview-container {
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.poem-add-image-preview {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.poem-add-image-preview:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.poem-add-image-preview img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.poem-add-image-preview:hover img {
+  transform: scale(1.05);
+}
+
+.poem-add-image-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-sm);
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.poem-add-image-preview:hover .poem-add-image-actions {
+  transform: translateY(0);
+}
+
+.poem-add-change-image,
+.poem-add-remove-image {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.poem-add-change-image {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+}
+
+.poem-add-change-image:hover:not(:disabled) {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.poem-add-remove-image {
+  background: rgba(239, 68, 68, 0.95);
+  color: white;
+}
+
+.poem-add-remove-image:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.poem-add-change-image:disabled,
+.poem-add-remove-image:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.poem-add-image-alt {
+  margin-top: var(--spacing-sm);
+}
+
+/* Checkbox Group */
+.poem-add-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: var(--background-alt);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.poem-add-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.poem-add-checkbox:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.poem-add-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.poem-add-checkbox span {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Form Actions */
+.poem-add-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+.poem-add-cancel-btn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.poem-add-cancel-btn:hover:not(:disabled) {
+  background: var(--surface-dark);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.poem-add-submit-btn {
+  flex: 2;
+  padding: 1rem 1.5rem;
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: var(--radius-lg);
+  color: white;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-primary);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.poem-add-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.poem-add-submit-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.poem-add-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-primary);
+}
+
+.poem-add-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.poem-add-submit-btn:disabled::before {
+  display: none;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .poem-add-form {
+  background: var(--surface);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .poem-add-input,
+[data-theme="dark"] .poem-add-textarea,
+[data-theme="dark"] .poem-add-select {
+  background: var(--surface-dark);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .poem-add-tags-list {
+  background: var(--surface-dark);
+}
+
+[data-theme="dark"] .poem-add-checkbox-group {
+  background: var(--surface-dark);
+}
+
+[data-theme="dark"] .poem-add-upload-area {
+  background: var(--surface-dark);
+}
+
+/* Loading Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .poem-add-container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .poem-add-grid {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+  
+  .poem-add-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  
+  .poem-add-back-btn {
+    align-self: flex-start;
+    width: auto;
+  }
+  
+  .poem-add-title {
+    font-size: var(--font-size-2xl);
+    text-align: center;
+  }
+  
+  .poem-add-actions {
+    flex-direction: column;
+  }
+  
+  .poem-add-cancel-btn,
+  .poem-add-submit-btn {
+    width: 100%;
+  }
+  
+  .poem-add-image-preview img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .poem-add-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .poem-add-grid {
+    padding: var(--spacing-md);
+  }
+  
+  .poem-add-input,
+  .poem-add-textarea,
+  .poem-add-select {
+    padding: 0.875rem 1rem;
+  }
+  
+  .poem-add-upload-area {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .poem-add-upload-text {
+    font-size: var(--font-size-sm);
+  }
+  
+  .poem-add-upload-subtext {
+    font-size: var(--font-size-xs);
+  }
+  
+  .poem-add-image-preview img {
+    height: 160px;
+  }
+  
+  .poem-add-change-image,
+  .poem-add-remove-image {
+    padding: 0.625rem 0.875rem;
+    font-size: var(--font-size-xs);
+  }
+  
+  .poem-add-cancel-btn,
+  .poem-add-submit-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .poem-add-container,
+  .poem-add-form,
+  .poem-add-input,
+  .poem-add-textarea,
+  .poem-add-select,
+  .poem-add-back-btn,
+  .poem-add-submit-btn,
+  .poem-add-tag,
+  .poem-add-upload-area,
+  .poem-add-image-preview,
+  .poem-add-change-image,
+  .poem-add-remove-image {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .poem-add-back-btn,
+  .poem-add-actions {
+    display: none;
+  }
+  
+  .poem-add-form {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .poem-add-input,
+  .poem-add-textarea,
+  .poem-add-select {
+    background: white;
+    border: 1px solid #ddd;
+    color: black;
+  }
+}

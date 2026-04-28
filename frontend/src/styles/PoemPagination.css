@@ -1,0 +1,152 @@
+/* PoemPagination.css */
+.poem-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .poem-pagination {
+  background: #2d3748;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.poem-pagination-info {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.dark .poem-pagination-info {
+  color: #a0aec0;
+}
+
+.poem-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.poem-pagination-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #4a5568;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .poem-pagination-button {
+  background: #4a5568;
+  border-color: #718096;
+  color: #e2e8f0;
+}
+
+.poem-pagination-button:hover:not(:disabled) {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  color: #2d3748;
+  transform: translateY(-1px);
+}
+
+.dark .poem-pagination-button:hover:not(:disabled) {
+  background: #5a6576;
+  border-color: #a0aec0;
+  color: white;
+}
+
+.poem-pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.poem-pagination-button.first,
+.poem-pagination-button.last {
+  min-width: 40px;
+  justify-content: center;
+}
+
+.poem-pagination-pages {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.poem-pagination-page {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #4a5568;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .poem-pagination-page {
+  background: #4a5568;
+  border-color: #718096;
+  color: #e2e8f0;
+}
+
+.poem-pagination-page:hover:not(.active) {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  color: #2d3748;
+}
+
+.dark .poem-pagination-page:hover:not(.active) {
+  background: #5a6576;
+  border-color: #a0aec0;
+  color: white;
+}
+
+.poem-pagination-page.active {
+  background: #4299e1;
+  border-color: #4299e1;
+  color: white;
+  box-shadow: 0 1px 3px rgba(66, 153, 225, 0.2);
+}
+
+.dark .poem-pagination-page.active {
+  background: #2c5282;
+  border-color: #63b3ed;
+  box-shadow: 0 1px 3px rgba(99, 179, 237, 0.2);
+}
+
+.poem-pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  color: #a0aec0;
+}
+
+@media (max-width: 640px) {
+  .poem-pagination-button span {
+    display: none;
+  }
+  
+  .poem-pagination-button {
+    padding: 0.5rem;
+  }
+  
+  .poem-pagination-button::after {
+    content: attr(title);
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,123 @@
+/* StatCard.css - Modern Professional Stats Display */
+
+.stat-card-new {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  overflow: hidden;
+  transition: all var(--transition-standard);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  --stat-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card-new.small {
+  padding: var(--spacing-lg);
+}
+
+.stat-card-new:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.stat-card-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card-new .admin-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-alt);
+  color: var(--stat-color);
+  transition: all var(--transition-standard);
+  border: 1px solid var(--border-color);
+}
+
+.stat-card-new.small .admin-card__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.stat-card-new:hover .admin-card__icon {
+  background: var(--stat-color);
+  color: white;
+  border-color: var(--stat-color);
+}
+
+.stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.stat-trend.up {
+  background: var(--success-light);
+  color: var(--secondary-600);
+}
+
+[data-theme="dark"] .stat-trend.up {
+  background: var(--success-light);
+  color: var(--secondary-500);
+}
+
+.stat-trend.down {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+[data-theme="dark"] .stat-trend.down {
+  background: var(--error-light);
+  color: var(--accent-500);
+}
+
+.stat-card-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.stat-card-value {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+  margin: var(--space-1) 0;
+}
+
+.stat-card-desc {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.stat-card-glow {
+  display: none; /* Removed for cleaner look */
+}
