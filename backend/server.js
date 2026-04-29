@@ -29,8 +29,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const http = require("http");
-const { Server } = require("socket.io");
 
 /* =========================
    ROUTES IMPORT
@@ -101,36 +99,12 @@ const connectDB = async () => {
 const { startTokenCleanup } = require("./jobs/tokenCleanup");
 
 /* =========================
-   SOCKET SERVICE
-========================= */
-const socketService = require("./services/socketService");
-
-/* =========================
    APP INITIALIZATION
 ========================= */
 const app = express();
 
 // Use compression before other middleware
 app.use(compression());
-
-/* =========================
-   CREATE SERVER + SOCKET.IO
-========================= */
-const server = http.createServer(app);
-
-const allowedOrigins = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",") : ["http://localhost:5173"];
-
-const io = new Server(server, {
-  cors: {
-    origin: allowedOrigins,
-    credentials: true,
-  },
-});
-
-/* =========================
-   INITIALIZE SERVICES
-========================= */
-socketService.initialize(io);
 
 // Wait for database connection before starting jobs
 const initializeApp = async () => {
@@ -233,33 +207,5 @@ app.use((req, res) => {
 ========================= */
 app.use(errorHandler);
 
-/* =========================
-   START SERVER
-========================= */
-const PORT = process.env.PORT || 5001;
-
-server.listen(PORT, () => {
-  logger.info(`🚀 Server running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
-});
-
-/* =========================
-   GRACEFUL SHUTDOWN
-========================= */
-process.on("SIGINT", async () => {
-  logger.info("👋 SIGINT received. Shutting down...");
-  server.close();
-  await mongoose.connection.close();
-  logger.info("Database connection closed. Exiting.");
-  process.exit(0);
-});
-
-process.on("SIGTERM", async () => {
-  logger.info("👋 SIGTERM received. Shutting down...");
-  server.close();
-  await mongoose.connection.close();
-  logger.info("Database connection closed. Exiting.");
-  process.exit(0);
-});
-
-/* Export for testing */
-module.exports = { app, server, io };
+/* Export for serverless */
+module.exports = app;
