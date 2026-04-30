@@ -1,23 +1,40 @@
 import axios from 'axios';
 
 const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-// Ensure no trailing slash for consistency
-const API_URL = rawApiUrl.replace(/\/$/, "");
+// IMPORTANT: Axios baseURL MUST end with a trailing slash if it contains a path like /api
+// Otherwise, relative requests like 'gallery' will replace '/api' with '/gallery'
+const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl : `${rawApiUrl}/`;
+
+// Log the configured API URL for easier debugging in production
+if (import.meta.env.PROD) {
+  console.log('🔌 API Service initialized with BaseURL:', API_URL);
+}
 
 const api = axios.create({
   baseURL: API_URL,
-  withCredentials: true,               // send cookies automatically
+  withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
-  timeout: 10000,                      // 10 second timeout to prevent hanging
+  timeout: 10000,
 });
 
-// Device ID for refresh token binding (already in your code)
+// Device ID for refresh token binding
 const deviceId = localStorage.getItem('deviceId') || crypto.randomUUID();
 localStorage.setItem('deviceId', deviceId);
 api.defaults.headers.common['x-device-id'] = deviceId;
 
-// Attach CSRF token from cookie for state-changing requests
+// Interceptor to handle leading slashes in request URLs
+// In Axios, if the URL starts with '/', it replaces the entire path in baseURL.
+// To keep the '/api' prefix, we must ensure the request URL is relative (no leading slash).
 api.interceptors.request.use((config) => {
+  if (config.url && config.url.startsWith('/')) {
+    config.url = config.url.substring(1);
+  }
+  
+  // Debug log for production connection issues (can be removed later)
+  if (process.env.NODE_ENV === 'production') {
+    console.log(`📡 API Request: ${config.baseURL}${config.url}`);
+  }
+
   const method = (config.method || 'get').toLowerCase();
   if (['post', 'put', 'patch', 'delete'].includes(method)) {
     const match = document.cookie.match(/(?:^|; )csrfToken=([^;]+)/);

@@ -1,6 +1,7 @@
 
 const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-const BACKEND_URL = rawApiUrl.replace(/\/api$/, '').replace(/\/$/, '');
+// Ensure BACKEND_URL is just the domain without /api or trailing slash
+const BACKEND_URL = rawApiUrl.replace(/\/api\/?$/, '').replace(/\/$/, '');
 
 /**
  * Normalizes an image URL to ensure it points to the correct backend endpoint.
