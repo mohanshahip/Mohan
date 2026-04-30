@@ -26,9 +26,12 @@ if (missingVars.length > 0) {
    IMPORTS
 ========================= */
 const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const socketService = require("./services/socketService");
 
 /* =========================
    ROUTES IMPORT
@@ -77,6 +80,7 @@ const { authLimiter, apiLimiter } = require("./middleware/rateLimiter");
    DATABASE
 ========================= */
 const connectDB = async () => {
+  logger.info("Attempting to connect to MongoDB...");
   try {
     const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/portfolio";
     // Mask password in URI for logging
@@ -89,7 +93,7 @@ const connectDB = async () => {
     logger.info(`🔗 Connection URI: ${maskedUri}`);
   } catch (error) {
     logger.error(`❌ MongoDB connection error: ${error.message}`);
-    process.exit(1);
+    // process.exit(1); // Don't exit, let the user see the error in logs
   }
 };
 
@@ -102,6 +106,18 @@ const { startTokenCleanup } = require("./jobs/tokenCleanup");
    APP INITIALIZATION
 ========================= */
 const app = express();
+const server = http.createServer(app);
+
+// Initialize Socket.io
+const io = new Server(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",") : "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+socketService.initialize(io);
 
 // Use compression before other middleware
 app.use(compression());
@@ -206,6 +222,15 @@ app.use((req, res) => {
    GLOBAL ERROR HANDLER
 ========================= */
 app.use(errorHandler);
+
+/* =========================
+    START SERVER
+ ========================= */
+const PORT = process.env.PORT || 5001;
+logger.info(`Starting server on port ${PORT}...`);
+server.listen(PORT, () => {
+  logger.info(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+});
 
 /* Export for serverless */
 module.exports = app;

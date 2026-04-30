@@ -61,12 +61,12 @@ class EmailService {
       logger.info('✅ Email service ready to send messages');
     } catch (error) {
       if (error.message.includes('BadCredentials') || error.message.includes('Invalid login')) {
-        logger.error('\n❌ GMAIL AUTHENTICATION FAILED:');
-        logger.error('   Your App Password was rejected by Google.');
-        logger.error('   Please generate a NEW App Password: https://myaccount.google.com/apppasswords');
-        logger.error('   Ensure 2-Step Verification is ENABLED first.\n');
+        logger.warn('\n⚠️ GMAIL AUTHENTICATION FAILED (Email features will be disabled):');
+        logger.warn('   Your App Password was rejected by Google.');
+        logger.warn('   Please generate a NEW App Password: https://myaccount.google.com/apppasswords');
+        logger.warn('   Ensure 2-Step Verification is ENABLED first.\n');
       } else {
-        logger.error(`❌ Email service connection error: ${error.message}`);
+        logger.warn(`⚠️ Email service connection warning: ${error.message}`);
       }
       this.isConfigured = false;
     }
