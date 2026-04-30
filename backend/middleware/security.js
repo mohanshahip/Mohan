@@ -40,18 +40,30 @@ const securityMiddleware = (app) => {
   );
 
   // CORS config
-  const allowedOrigins = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",") : ["http://localhost:5173", "http://localhost:5174"];
+  const rawAllowedOrigins = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",") : ["http://localhost:5173", "http://localhost:5174"];
+  // Clean origins (remove trailing slashes)
+  const allowedOrigins = rawAllowedOrigins.map(url => url.replace(/\/$/, ""));
 
   app.use(
     cors({
       origin: function (origin, callback) {
         // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.includes('localhost')) {
+        
+        // Clean incoming origin for comparison
+        const cleanOrigin = origin.replace(/\/$/, "");
+        
+        const isAllowed = allowedOrigins.includes(cleanOrigin) || 
+                          cleanOrigin.includes('localhost') ||
+                          cleanOrigin.includes('127.0.0.1');
+
+        if (isAllowed) {
           return callback(null, true);
+        } else {
+          logger.warn(`🚫 CORS blocked origin: ${origin}. Allowed: ${allowedOrigins.join(", ")}`);
+          const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+          return callback(new Error(msg), false);
         }
-        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-        return callback(new Error(msg), false);
       },
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
