@@ -40,7 +40,7 @@ const Skills = () => {
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
 
   const categoryIcons = {
     'frontend': <Code size={20} />,

@@ -45,7 +45,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
 
   // Fetch data
   const fetchData = useCallback(async () => {

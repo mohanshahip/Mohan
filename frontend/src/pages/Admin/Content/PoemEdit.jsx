@@ -427,7 +427,7 @@ const PoemEdit = () => {
                   <div className="admin-image-preview-grid">
                     {formData.images.map((img) => (
                       <div key={img.id || img._id} className="admin-form-image-preview">
-                        <img src={(img.url.startsWith('blob:') || img.url.startsWith('http')) ? img.url : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5001'}${img.url}`} alt={img.alt} />
+                        <img src={(img.url.startsWith('blob:') || img.url.startsWith('http')) ? img.url : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${img.url}`} alt={img.alt} />
                         <div className="admin-image-preview-actions">
                           <button
                             type="button"

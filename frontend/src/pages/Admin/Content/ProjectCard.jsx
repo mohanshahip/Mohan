@@ -40,7 +40,7 @@ const ProjectCard = ({
             <img 
               src={primaryImage.url.startsWith('http') 
                 ? primaryImage.url 
-                : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5001'}${primaryImage.url}`
+                : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${primaryImage.url}`
               } 
               alt={project.title} 
               className="project-card-image" 

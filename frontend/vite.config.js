@@ -33,7 +33,7 @@ export default defineConfig({
   server: {
     host: "localhost",
     port: 5173,
-    strictPort: true,
+    strictPort: false,
     cors: true, // Enable CORS for dev server
     hmr: {
       protocol: "ws",
@@ -43,13 +43,13 @@ export default defineConfig({
     },
     proxy: {
       "/api": {
-        target: "http://localhost:5001", // your backend port
+        target: "http://localhost:5012", // your backend port
         changeOrigin: true,
         secure: false,
         ws: true, // Enable proxying for WebSockets
       },
       "/uploads": {
-        target: "http://localhost:5001", // your backend port
+        target: "http://localhost:5012", // your backend port
         changeOrigin: true,
         secure: false,
       },

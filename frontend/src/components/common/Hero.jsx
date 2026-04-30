@@ -19,7 +19,7 @@ const Hero = () => {
   const [imageError, setImageError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
 
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);

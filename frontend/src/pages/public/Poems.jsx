@@ -48,7 +48,7 @@ const Poems = () => {
   const language = i18n.language || "en";
   const isSinglePoem = !!id;
 
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api');
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5012/api');
 
   // Categories for filtering
   const poemCategories = [

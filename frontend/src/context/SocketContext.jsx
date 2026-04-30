@@ -50,7 +50,7 @@ export const SocketProvider = ({ children }) => {
     const token = getToken();
     if (!token) return;
 
-    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5001';
+    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5012';
     
     console.log("🔌 Connecting socket...");
     const newSocket = io(SOCKET_URL, {

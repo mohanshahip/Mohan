@@ -33,7 +33,7 @@ const GalleryCard = ({
           <img 
             src={primaryImage.url.startsWith('http') || primaryImage.url.startsWith('blob:')
               ? primaryImage.url 
-              : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5001'}${primaryImage.url.startsWith('/') ? '' : '/'}${primaryImage.url}`
+              : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${primaryImage.url.startsWith('/') ? '' : '/'}${primaryImage.url}`
             } 
             alt={gallery.title} 
             className="gallery-card-image" 
