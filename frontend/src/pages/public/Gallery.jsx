@@ -7,6 +7,7 @@ import {
   Clock, Heart
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import api from '../../services/api';
 import { getFullImageUrl } from '../../utils/imageUtils';
 
 // Common Components
@@ -42,23 +43,19 @@ const Gallery = ({ isSection = false }) => {
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-
   // Fetch categories
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/gallery/categories?lang=${i18n.language}`);
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success) {
-          // categories is an array of objects like { _id: 'cat', count: 1 }
-          setCategories(data.data.map(c => c._id).filter(Boolean));
-        }
+      const response = await api.get(`/gallery/categories?lang=${i18n.language}`);
+      if (response.data && response.data.success) {
+        const data = response.data;
+        // categories is an array of objects like { _id: 'cat', count: 1 }
+        setCategories(data.data.map(c => c._id).filter(Boolean));
       }
     } catch (err) {
       console.error('Error fetching categories:', err);
     }
-  }, [i18n.language, API_BASE_URL]);
+  }, [i18n.language]);
 
   useEffect(() => {
     fetchCategories();
@@ -70,14 +67,13 @@ const Gallery = ({ isSection = false }) => {
       setLoading(true);
       setError(null);
 
-      const params = new URLSearchParams({ lang: i18n.language });
-      if (filters.category) params.append('category', filters.category);
+      const params = { lang: i18n.language };
+      if (filters.category) params.category = filters.category;
 
-      const response = await fetch(`${API_BASE_URL}/gallery?${params.toString()}`);
-      if (!response.ok) throw new Error(t('gallery.error-loading'));
-
-      const data = await response.json();
-      if (data.success) {
+      const response = await api.get('/gallery', { params });
+      
+      if (response.data && response.data.success) {
+        const data = response.data;
         const processed = data.data.map(gallery => ({
           ...gallery,
           images: (gallery.images || []).map(image => ({
@@ -88,11 +84,11 @@ const Gallery = ({ isSection = false }) => {
         setGalleries(processed);
       }
     } catch (err) {
-      setError(err.message || t('gallery.error'));
+      setError(err.response?.data?.error || t('gallery.error-loading'));
     } finally {
       setLoading(false);
     }
-  }, [filters.category, i18n.language, t, API_BASE_URL]);
+  }, [filters.category, i18n.language, t]);
 
   useEffect(() => {
     fetchGalleries();

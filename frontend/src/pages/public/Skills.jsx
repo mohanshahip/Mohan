@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import api from '../../services/api';
 import {
   Code, Cpu, Database, Cloud, Smartphone, Palette, TestTube,
   Wrench, Users, Star, Calendar, Award, BookOpen, Target,
@@ -40,8 +41,6 @@ const Skills = () => {
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-
   const categoryIcons = {
     'frontend': <Code size={20} />,
     'backend': <Cpu size={20} />,
@@ -73,23 +72,23 @@ const Skills = () => {
       setLoading(true);
       setError(null);
 
-      const query = new URLSearchParams({
+      const params = {
         lang: i18n.language,
         sort: filters.sort,
         ...(filters.category && { category: filters.category })
-      });
+      };
 
       // Fetch skills (always)
-      const skillsPromise = fetch(`${API_BASE_URL}/skills?${query}`);
+      const skillsPromise = api.get('/skills', { params });
       
       // Fetch categories only if not already loaded
       const catsPromise = categories.length === 0 
-        ? fetch(`${API_BASE_URL}/skills/categories?lang=${i18n.language}`)
+        ? api.get('/skills/categories', { params: { lang: i18n.language } })
         : Promise.resolve(null);
         
       // Fetch stats only if not already loaded
       const statsPromise = !stats
-        ? fetch(`${API_BASE_URL}/skills/stats?lang=${i18n.language}`)
+        ? api.get('/skills/stats', { params: { lang: i18n.language } })
         : Promise.resolve(null);
 
       const [skillsRes, catsRes, statsRes] = await Promise.all([
@@ -98,29 +97,25 @@ const Skills = () => {
         statsPromise
       ]);
 
-      // Process skills
-      if (skillsRes.ok) {
-        const data = await skillsRes.json();
-        if (data.success) setSkills(Array.isArray(data.data) ? data.data : []);
+      if (skillsRes.data?.success) {
+        const skillsData = Array.isArray(skillsRes.data.data) ? skillsRes.data.data : [];
+        setSkills(skillsData);
+        setFilteredSkills(skillsData);
       }
 
-      // Process categories
-      if (catsRes && catsRes.ok) {
-        const data = await catsRes.json();
-        if (data.success) setCategories(Array.isArray(data.data) ? data.data : []);
+      if (catsRes && catsRes.data?.success) {
+        setCategories(Array.isArray(catsRes.data.data) ? catsRes.data.data : []);
       }
 
-      // Process stats
-      if (statsRes && statsRes.ok) {
-        const data = await statsRes.json();
-        if (data.success) setStats(data.data || null);
+      if (statsRes && statsRes.data?.success) {
+        setStats(statsRes.data.data || null);
       }
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message || t('common.error-loading'));
     } finally {
       setLoading(false);
     }
-  }, [filters.category, filters.sort, i18n.language, API_BASE_URL, categories.length, stats]);
+  }, [filters.category, filters.sort, i18n.language, categories.length, stats, t]);
 
   useEffect(() => {
     fetchData();

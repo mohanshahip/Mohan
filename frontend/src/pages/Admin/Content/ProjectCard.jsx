@@ -2,6 +2,7 @@ import React from 'react';
 import { 
   Eye, EyeOff, Edit, Trash2, Star, StarOff, ExternalLink, FolderOpen
 } from 'lucide-react';
+import { getFullImageUrl } from '../../../utils/imageUtils';
 
 const ProjectCard = ({ 
   project, 
@@ -38,10 +39,7 @@ const ProjectCard = ({
         <div className="project-card-image-wrapper">
           {primaryImage ? (
             <img 
-              src={primaryImage.url.startsWith('http') 
-                ? primaryImage.url 
-                : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${primaryImage.url}`
-              } 
+              src={getFullImageUrl(primaryImage.url)} 
               alt={project.title} 
               className="project-card-image" 
               loading="lazy"

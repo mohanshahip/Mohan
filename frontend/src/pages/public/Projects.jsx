@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import api from '../../services/api';
 import { getFullImageUrl } from '../../utils/imageUtils';
 import {
   ExternalLink, Github, Calendar, Tag,
@@ -45,23 +46,18 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-
   // Fetch data
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const queryParams = new URLSearchParams({ lang: i18n.language });
-      if (filters.category) queryParams.append('category', filters.category);
-      if (filters.status) queryParams.append('status', filters.status);
+      const params = { lang: i18n.language };
+      if (filters.category) params.category = filters.category;
+      if (filters.status) params.status = filters.status;
 
-      const url = `${API_BASE_URL}/projects?${queryParams.toString()}`;
-      const projectsRes = await fetch(url);
-      if (!projectsRes.ok) throw new Error(t('projects.error-loading'));
-
-      const projectsData = await projectsRes.json();
+      const projectsRes = await api.get('/projects', { params });
+      const projectsData = projectsRes.data;
       const projectsList = projectsData.success ? projectsData.data : (Array.isArray(projectsData) ? projectsData : []);
 
       const projectsWithFullUrls = projectsList.map(project => ({
@@ -76,27 +72,25 @@ const Projects = () => {
 
       // Fetch categories & stats
       const [categoriesRes, statsRes] = await Promise.allSettled([
-        fetch(`${API_BASE_URL}/projects/categories`),
-        fetch(`${API_BASE_URL}/projects/stats`)
+        api.get('/projects/categories'),
+        api.get('/projects/stats')
       ]);
 
-      if (categoriesRes.status === 'fulfilled' && categoriesRes.value.ok) {
-        const catData = await categoriesRes.value.json();
-        if (catData.success) setCategories(catData.data);
+      if (categoriesRes.status === 'fulfilled' && categoriesRes.value.data?.success) {
+        setCategories(categoriesRes.value.data.data);
       }
 
-      if (statsRes.status === 'fulfilled' && statsRes.value.ok) {
-        const statsData = await statsRes.value.json();
-        if (statsData.success) setStats(statsData.data);
+      if (statsRes.status === 'fulfilled' && statsRes.value.data?.success) {
+        setStats(statsRes.value.data.data);
       }
 
       setFilteredProjects(sortProjects(projectsWithFullUrls, filters.sort));
     } catch (err) {
-      setError(err.message || t('common.error'));
+      setError(err.response?.data?.error || t('projects.error-loading'));
     } finally {
       setLoading(false);
     }
-  }, [filters.category, filters.status, i18n.language, t, API_BASE_URL]);
+  }, [filters.category, filters.status, filters.sort, i18n.language, t]);
 
   useEffect(() => {
     fetchData();
@@ -139,12 +133,10 @@ const Projects = () => {
 
   const handleLike = async (projectId) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/projects/${projectId}/like`, { method: 'PATCH' });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success) {
-          setProjects(prev => prev.map(p => p._id === projectId ? { ...p, likes: data.data.likes } : p));
-        }
+      const res = await api.patch(`/projects/${projectId}/like`);
+      if (res.data?.success) {
+        const data = res.data;
+        setProjects(prev => prev.map(p => p._id === projectId ? { ...p, likes: data.data.likes } : p));
       }
     } catch (error) {
       console.error('Failed to like project:', error);
@@ -193,16 +185,16 @@ const Projects = () => {
     if (!project && !loading) {
       (async () => {
         try {
-          const res = await fetch(`${API_BASE_URL}/projects/${id}?lang=${i18n.language}`);
-          const data = await res.json();
+          const res = await api.get(`/projects/${id}`, {
+            params: { lang: i18n.language }
+          });
+          const data = res.data;
           if (data?.success) {
             const p = {
               ...data.data,
               images: (data.data.images || []).map(image => ({
                 ...image,
-                url: image.url && !image.url.startsWith('http')
-                  ? `${BACKEND_URL}${image.url}`
-                  : image.url
+                url: getFullImageUrl(image.url)
               }))
             };
             setSelectedProject(p);

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
+const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
+// Ensure no trailing slash for consistency
+const API_URL = rawApiUrl.replace(/\/$/, "");
 
 const api = axios.create({
   baseURL: API_URL,
@@ -44,6 +46,20 @@ const processQueue = (error, token = null) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // Log detailed error information for debugging connection issues
+    if (!error.response) {
+      console.error('🌐 Network/Connection Error:', {
+        message: error.message,
+        baseURL: api.defaults.baseURL,
+        url: error.config?.url
+      });
+    } else {
+      console.error(`❌ API Error (${error.response.status}):`, {
+        url: error.config?.url,
+        data: error.response.data
+      });
+    }
+
     const originalRequest = error.config;
 
     // If the error is not 401 or the request has already been retried, reject

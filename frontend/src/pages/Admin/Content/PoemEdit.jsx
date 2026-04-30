@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
+import { getFullImageUrl } from "../../../utils/imageUtils";
 import { Save, ArrowLeft, Loader, Upload, X, AlertCircle, Check, Image as ImageIcon, Globe, BookOpen, Tag, Clock, User, Eye, EyeOff, Star } from "lucide-react";
 import api from "../../../services/api";
 import AdminPageLayout from "../../../components/common/AdminPageLayout";
@@ -427,7 +428,7 @@ const PoemEdit = () => {
                   <div className="admin-image-preview-grid">
                     {formData.images.map((img) => (
                       <div key={img.id || img._id} className="admin-form-image-preview">
-                        <img src={(img.url.startsWith('blob:') || img.url.startsWith('http')) ? img.url : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${img.url}`} alt={img.alt} />
+                        <img src={getFullImageUrl(img.url)} alt={img.alt} />
                         <div className="admin-image-preview-actions">
                           <button
                             type="button"

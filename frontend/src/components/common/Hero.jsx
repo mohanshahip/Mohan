@@ -9,6 +9,7 @@ import {
   Facebook
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 import { getFullImageUrl } from '../../utils/imageUtils';
 import '../../styles/Hero.css';
 
@@ -18,8 +19,6 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
 
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
@@ -73,21 +72,10 @@ const Hero = () => {
       setImageError(false);
       const backendLang = getBackendLang();
       
-      const response = await fetch(`${API_BASE_URL}/hero?lang=${backendLang}`, {
-        headers: { 'Accept': 'application/json', 'Cache-Control': 'no-cache' },
-        signal: AbortSignal.timeout(5000)
-      });
+      const response = await api.get(`/hero?lang=${backendLang}`);
 
-      if (!response.ok) {
-        if (response.status === 404) {
-          setHeroData(getDefaultHeroData());
-          return;
-        }
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      const result = await response.json();
-      if (result.success && result.data) {
+      if (response.data && response.data.success) {
+        const result = response.data;
         // Only use the fetched hero image if it has a valid URL
         const backendHeroImage = result.data.heroImage?.url 
           ? result.data.heroImage 
@@ -99,15 +87,18 @@ const Hero = () => {
           socialLinks: { ...getDefaultHeroData().socialLinks, ...(result.data.socialLinks || {}) },
           heroImage: backendHeroImage
         });
-      } else {
-        setHeroData(getDefaultHeroData());
       }
-    } catch (err) {
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setHeroData(getDefaultHeroData());
+        return;
+      }
+      console.error('Error fetching hero data:', error);
       setHeroData(getDefaultHeroData());
     } finally {
       setLoading(false);
     }
-  }, [getBackendLang, getDefaultHeroData, API_BASE_URL]);
+  }, [getBackendLang, getDefaultHeroData]);
 
   useEffect(() => {
     fetchHeroData();

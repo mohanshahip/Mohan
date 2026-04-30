@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 import { getFullImageUrl } from '../../utils/imageUtils';
-import axios from 'axios';
+import api from '../../services/api';
 
 // Styles
 import "../../styles/Pages.css";
@@ -54,15 +54,13 @@ const Contact = () => {
   });
   const [errors, setErrors] = useState({});
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-
   useEffect(() => {
     fetchContactInfo();
   }, []);
 
   const fetchContactInfo = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/contact/info`);
+      const response = await api.get('/contact/info');
       if (response.data.success) {
         setContactInfo(prev => ({
           ...prev,
@@ -100,7 +98,7 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      await axios.post(`${API_BASE_URL}/contact/messages`, formData);
+      await api.post('/contact/messages', formData);
       addToast(t('contact.success'), 'success');
       setStatus({ type: 'success', message: t('contact.success') });
       setFormData({ name: '', email: '', subject: '', message: '' });

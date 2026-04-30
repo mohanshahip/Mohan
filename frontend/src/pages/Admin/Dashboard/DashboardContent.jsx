@@ -36,8 +36,6 @@ const DashboardContent = ({ initialTab = 'overview' }) => {
   const [timeRange, setTimeRange] = useState('week');
   const [activeTab, setActiveTab] = useState(initialTab);
   
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-
   const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import api from "../../services/api";
 import { getFullImageUrl } from '../../utils/imageUtils';
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
@@ -48,8 +49,6 @@ const Poems = () => {
   const language = i18n.language || "en";
   const isSinglePoem = !!id;
 
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5012/api');
-
   // Categories for filtering
   const poemCategories = [
     { id: "love", label: t("poems.categories.love"), icon: Heart },
@@ -69,25 +68,21 @@ const Poems = () => {
       if (!isLoadMore) setLoading(true);
       else setLoadingMore(true);
       
-      const params = new URLSearchParams({
+      const params = {
         lang: language,
         page: pageNum,
         limit: 12,
         sort: sortBy
-      });
+      };
       
-      if (searchQuery) params.append('q', searchQuery);
-      if (selectedCategory) params.append('category', selectedCategory);
+      if (searchQuery) params.q = searchQuery;
+      if (selectedCategory) params.category = selectedCategory;
       
-      const endpoint = searchQuery 
-        ? `${API_BASE}/poems/search?${params.toString()}`
-        : `${API_BASE}/poems?${params.toString()}`;
-      
-      const response = await fetch(endpoint);
-      if (!response.ok) throw new Error(t('poems.errorLoading'));
+      const endpoint = searchQuery ? '/poems/search' : '/poems';
+      const response = await api.get(endpoint, { params });
 
-      const data = await response.json();
-      if (data.success) {
+      if (response.data && response.data.success) {
+        const data = response.data;
         const processedPoems = (data.data || []).map(poem => ({
           ...poem,
           imageUrl: poem.featuredImage ? getFullImageUrl(poem.featuredImage.url || poem.featuredImage) : null
@@ -109,9 +104,11 @@ const Poems = () => {
   // Fetch single poem
   const fetchSinglePoem = useCallback(async (poemId) => {
     try {
-      const response = await fetch(`${API_BASE}/poems/${poemId}?lang=${language}&incrementViews=true`);
-      const data = await response.json();
-      if (data.success) {
+      const response = await api.get(`/poems/${poemId}`, {
+        params: { lang: language, incrementViews: true }
+      });
+      if (response.data?.success) {
+        const data = response.data;
         setCurrentPoem({
           ...data.data,
           imageUrl: data.data.featuredImage ? getFullImageUrl(data.data.featuredImage.url || data.data.featuredImage) : null
@@ -120,30 +117,30 @@ const Poems = () => {
     } catch (error) {
       console.error("Error fetching poem:", error);
     }
-  }, [language, API_BASE]);
+  }, [language]);
 
   // Fetch featured & stats
   const fetchMetadata = useCallback(async () => {
     try {
       const [featRes, statsRes] = await Promise.all([
-        fetch(`${API_BASE}/poems/featured?lang=${language}&limit=4`),
-        fetch(`${API_BASE}/poems/stats?lang=${language}`)
+        api.get('/poems/featured', { params: { lang: language, limit: 4 } }),
+        api.get('/poems/stats', { params: { lang: language } })
       ]);
       
-      const featData = await featRes.json();
-      const statsData = await statsRes.json();
+      const featData = featRes.data;
+      const statsData = statsRes.data;
       
-      if (featData.success) {
+      if (featData?.success) {
         setFeaturedPoems(featData.data.map(p => ({
           ...p,
           imageUrl: p.featuredImage ? getFullImageUrl(p.featuredImage.url || p.featuredImage) : null
         })));
       }
-      if (statsData.success) setStats(statsData.data);
+      if (statsData?.success) setStats(statsData.data);
     } catch (error) {
       console.error("Error fetching metadata:", error);
     }
-  }, [language, API_BASE]);
+  }, [language]);
 
   useEffect(() => {
     if (id) fetchSinglePoem(id);
@@ -163,13 +160,11 @@ const Poems = () => {
   // Handle like
   const handleLike = async (poemId) => {
     try {
-      const response = await fetch(`${API_BASE}/poems/${poemId}/like`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: likedPoems.has(poemId) ? 'unlike' : 'like' })
+      const response = await api.patch(`/poems/${poemId}/like`, {
+        action: likedPoems.has(poemId) ? 'unlike' : 'like'
       });
-      if (response.ok) {
-        const data = await response.json();
+      if (response.data?.success) {
+        const data = response.data;
         setPoems(prev => prev.map(p => p._id === poemId ? { ...p, likes: data.data.likes } : p));
         setLikedPoems(prev => {
           const next = new Set(prev);

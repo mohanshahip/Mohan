@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   Eye, EyeOff, Edit, Trash2, MapPin, Calendar, Image as ImageIcon
 } from 'lucide-react';
+import { getFullImageUrl } from '../../../utils/imageUtils';
 
 const GalleryCard = ({ 
   gallery, 
@@ -31,10 +32,7 @@ const GalleryCard = ({
       <div className="gallery-card-image-wrapper">
         {primaryImage ? (
           <img 
-            src={primaryImage.url.startsWith('http') || primaryImage.url.startsWith('blob:')
-              ? primaryImage.url 
-              : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${primaryImage.url.startsWith('/') ? '' : '/'}${primaryImage.url}`
-            } 
+            src={getFullImageUrl(primaryImage.url)} 
             alt={gallery.title} 
             className="gallery-card-image" 
             loading="lazy"

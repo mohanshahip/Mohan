@@ -2,6 +2,7 @@ import React from 'react';
 import { 
   Eye, EyeOff, Edit, Trash2, Star, StarOff, User, BookOpen, Clock, Image as ImageIcon
 } from 'lucide-react';
+import { getFullImageUrl } from '../../../utils/imageUtils';
 
 const PoemCard = ({ 
   poem, 
@@ -29,10 +30,7 @@ const PoemCard = ({
       <div className="poem-card-image-wrapper">
         {primaryImage ? (
           <img 
-            src={primaryImage.url.startsWith('http') || primaryImage.url.startsWith('blob:')
-              ? primaryImage.url 
-              : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5012'}${primaryImage.url.startsWith('/') ? '' : '/'}${primaryImage.url}`
-            } 
+            src={getFullImageUrl(primaryImage.url)} 
             alt={poem.title} 
             className="poem-card-image" 
             loading="lazy"
