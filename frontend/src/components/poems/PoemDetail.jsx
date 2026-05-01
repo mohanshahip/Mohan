@@ -9,17 +9,35 @@ import {
  */
 const PoemDetail = ({ currentPoem, t }) => {
   const poemId = currentPoem?._id;
-  const [comments, setComments] = useState([]);
+  
+  const [comments, setComments] = useState(() => {
+    if (!poemId) return [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(`poemComments:${poemId}`) || '[]');
+      return Array.isArray(saved) ? saved : [];
+    } catch (_err) {
+      return [];
+    }
+  });
+  
+  const [liked, setLiked] = useState(() => {
+    if (!poemId) return false;
+    return localStorage.getItem(`poemLiked:${poemId}`) === 'true';
+  });
+
   const [draft, setDraft] = useState('');
   const [copied, setCopied] = useState(false);
-  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     if (!poemId) return;
     try {
       const saved = JSON.parse(localStorage.getItem(`poemComments:${poemId}`) || '[]');
-      setComments(Array.isArray(saved) ? saved : []);
       const likedFlag = localStorage.getItem(`poemLiked:${poemId}`) === 'true';
+      
+      setComments(prev => {
+        const next = Array.isArray(saved) ? saved : [];
+        return JSON.stringify(prev) === JSON.stringify(next) ? prev : next;
+      });
       setLiked(likedFlag);
     } catch (_err) {
       // Error handling
