@@ -1,13 +1,25 @@
 import axios from 'axios';
 
 const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5012/api';
-// IMPORTANT: Axios baseURL MUST end with a trailing slash if it contains a path like /api
-// Otherwise, relative requests like 'gallery' will replace '/api' with '/gallery'
-const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl : `${rawApiUrl}/`;
+
+/**
+ * Robustly construct the API URL.
+ * Ensures that it ends with '/api/' regardless of how the environment variable was set.
+ */
+const getBaseURL = (url) => {
+  let cleanUrl = url.trim().replace(/\/+$/, ""); // Remove all trailing slashes
+  if (!cleanUrl.endsWith('/api')) {
+    cleanUrl += '/api';
+  }
+  return `${cleanUrl}/`; // Always end with a single trailing slash for Axios relative paths
+};
+
+const API_URL = getBaseURL(rawApiUrl);
 
 // Log the configured API URL for easier debugging in production
 if (import.meta.env.PROD) {
-  console.log('🔌 API Service initialized with BaseURL:', API_URL);
+  console.log('🔌 API Service BaseURL:', API_URL);
+  console.log('📝 Raw VITE_API_URL:', rawApiUrl);
 }
 
 const api = axios.create({
