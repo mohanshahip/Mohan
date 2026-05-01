@@ -19,7 +19,11 @@ const missingVars = requiredEnvVars.filter(
 
 if (missingVars.length > 0) {
   logger.error(`❌ Missing required environment variables: ${missingVars.join(", ")}`);
-  process.exit(1);
+  if (process.env.NODE_ENV === 'production') {
+    logger.warn('⚠️ Server will attempt to run but may fail on specific routes.');
+  } else {
+    process.exit(1);
+  }
 }
 
 /* =========================
@@ -79,21 +83,24 @@ const { authLimiter, apiLimiter } = require("./middleware/rateLimiter");
 /* =========================
    DATABASE
 ========================= */
+let isConnected = false;
 const connectDB = async () => {
+  if (isConnected) return;
+
   logger.info("Attempting to connect to MongoDB...");
   try {
     const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/portfolio";
-    // Mask password in URI for logging
     const maskedUri = mongoUri.replace(/\/\/.*:.*@/, '//***:***@');
     
-    const conn = await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+    });
 
-    logger.info(`✅ MongoDB Connected: ${conn.connection.host}`);
-    logger.info(`📁 Database Name: ${conn.connection.name}`);
-    logger.info(`🔗 Connection URI: ${maskedUri}`);
+    isConnected = true;
+    logger.info(`✅ MongoDB Connected: ${mongoose.connection.host}`);
   } catch (error) {
     logger.error(`❌ MongoDB connection error: ${error.message}`);
-    // process.exit(1); // Don't exit, let the user see the error in logs
   }
 };
 
@@ -108,7 +115,13 @@ const { startTokenCleanup } = require("./jobs/tokenCleanup");
 const app = express();
 const server = http.createServer(app);
 
-// Initialize Socket.io
+// Use a middleware to ensure DB is connected
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+// Initialize Socket.io (Limited support on Vercel)
 const io = new Server(server, {
   cors: {
     origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",") : "http://localhost:5173",
@@ -122,18 +135,10 @@ socketService.initialize(io);
 // Use compression before other middleware
 app.use(compression());
 
-// Wait for database connection before starting jobs
-const initializeApp = async () => {
-  try {
-    await connectDB();
-    startTokenCleanup();
-  } catch (err) {
-    logger.error(`❌ App initialization failed: ${err.message}`);
-    // We don't exit here if we want nodemon to stay alive or retry logic in connectDB
-  }
-};
-
-initializeApp();
+// In production (Vercel), we don't want background intervals
+if (process.env.NODE_ENV !== 'production') {
+  startTokenCleanup();
+}
 
 /* =========================
    GLOBAL MIDDLEWARES
