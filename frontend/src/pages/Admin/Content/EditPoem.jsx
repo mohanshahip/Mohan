@@ -43,7 +43,7 @@ const EditPoem = () => {
     readingTime: 2,
     isPublished: true,
     isFeatured: false
-  }), [language, t]);
+  }), [language]);
 
   const [formData, setFormData] = useState(defaultFormData);
   const [tagInput, setTagInput] = useState("");

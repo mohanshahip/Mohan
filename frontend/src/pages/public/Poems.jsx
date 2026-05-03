@@ -39,6 +39,7 @@ const Poems = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [stats, setStats] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [likedPoems, setLikedPoems] = useState(new Set());
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -82,20 +83,10 @@ const Poems = () => {
 
       if (response.data && response.data.success) {
         const data = response.data;
-        const processedPoems = (data.data || []).map(poem => {
-          let imageUrl = null;
-          if (poem.images && poem.images.length > 0) {
-            const primaryImage = poem.images.find(img => img.isPrimary) || poem.images[0];
-            imageUrl = getFullImageUrl(primaryImage.url);
-          } else if (poem.featuredImage) {
-            imageUrl = getFullImageUrl(poem.featuredImage.url || poem.featuredImage);
-          }
-          
-          return {
-            ...poem,
-            imageUrl
-          };
-        });
+        const processedPoems = (data.data || []).map(poem => ({
+          ...poem,
+          imageUrl: poem.featuredImage ? getFullImageUrl(poem.featuredImage.url || poem.featuredImage) : null
+        }));
         
         if (pageNum === 1) setPoems(processedPoems);
         else setPoems(prev => [...prev, ...processedPoems]);
@@ -117,18 +108,10 @@ const Poems = () => {
         params: { lang: language, incrementViews: true }
       });
       if (response.data?.success) {
-        const data = response.data.data;
-        let imageUrl = null;
-        if (data.images && data.images.length > 0) {
-          const primaryImage = data.images.find(img => img.isPrimary) || data.images[0];
-          imageUrl = getFullImageUrl(primaryImage.url);
-        } else if (data.featuredImage) {
-          imageUrl = getFullImageUrl(data.featuredImage.url || data.featuredImage);
-        }
-        
+        const data = response.data;
         setCurrentPoem({
-          ...data,
-          imageUrl
+          ...data.data,
+          imageUrl: data.data.featuredImage ? getFullImageUrl(data.data.featuredImage.url || data.data.featuredImage) : null
         });
       }
     } catch (error) {
@@ -139,27 +122,21 @@ const Poems = () => {
   // Fetch featured & stats
   const fetchMetadata = useCallback(async () => {
     try {
-      const [featRes] = await Promise.all([
-        api.get('/poems/featured', { params: { lang: language, limit: 4 } })
+      const [featRes, statsRes] = await Promise.all([
+        api.get('/poems/featured', { params: { lang: language, limit: 4 } }),
+        api.get('/poems/stats', { params: { lang: language } })
       ]);
       
       const featData = featRes.data;
+      const statsData = statsRes.data;
       
       if (featData?.success) {
-        setFeaturedPoems(featData.data.map(p => {
-          let imageUrl = null;
-          if (p.images && p.images.length > 0) {
-            const primaryImage = p.images.find(img => img.isPrimary) || p.images[0];
-            imageUrl = getFullImageUrl(primaryImage.url);
-          } else if (p.featuredImage) {
-            imageUrl = getFullImageUrl(p.featuredImage.url || p.featuredImage);
-          }
-          return {
-            ...p,
-            imageUrl
-          };
-        }));
+        setFeaturedPoems(featData.data.map(p => ({
+          ...p,
+          imageUrl: p.featuredImage ? getFullImageUrl(p.featuredImage.url || p.featuredImage) : null
+        })));
       }
+      if (statsData?.success) setStats(statsData.data);
     } catch (error) {
       console.error("Error fetching metadata:", error);
     }
@@ -241,7 +218,7 @@ const Poems = () => {
           <div className="loading-state"><Loader2 size={48} className="spinner" /><p className="loading-state-text">{t('common.loading')}</p></div>
         ) : (
           <div className="poem-detail-page">
-            <PoemDetail key={currentPoem._id} currentPoem={currentPoem} t={t} />
+            <PoemDetail currentPoem={currentPoem} t={t} />
           </div>
         )}
       </main>
